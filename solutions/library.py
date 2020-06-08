@@ -13,7 +13,7 @@ if __name__ == "__main__":
     print("------------------")
     print("PROCESSING LIBRARY DATA...")
     print("------------------")
-    print(books)
+    # print(books)
     # breakpoint()
 
     #
@@ -23,10 +23,19 @@ if __name__ == "__main__":
     # ... and assuming the order of books may vary,
     # ... "print" the title of the book whose identifier is equal to 4 (i.e. "Book D"):
 
+print([p["title"] for p in books if p["id"] == 4][0])
 
+#
+# QUESTION B
+#
+# Assuming the "year" attribute represents the year a given book was published,
+# ... "print" the number of books published before the year 1990 (i.e. 4):
 
-    #
-    # QUESTION B
-    #
-    # Assuming the "year" attribute represents the year a given book was published,
-    # ... "print" the number of books published before the year 1990 (i.e. 4):
+old_books = []
+
+for b in books:
+    b_year = b["year"]
+    if b_year < 1984:
+        old_books.append(b)
+
+print(len(old_books))
