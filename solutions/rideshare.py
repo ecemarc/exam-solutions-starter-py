@@ -15,9 +15,12 @@ trip = {
     "rideshare": True,
     "pickup_location": "Union Station",
     "stops": [
-        {"sequence": 1, "passenger": "Vishal", "destination": "Logan Circle", "fare": 3.99},
-        {"sequence": 2, "passenger": "Clara", "destination": "Dupont Circle", "fare": 5.99},
-        {"sequence": 3, "passenger": "Lee", "destination": "Georgetown University", "fare": 7.99}
+        {"sequence": 1, "passenger": "Vishal",
+            "destination": "Logan Circle", "fare": 3.99},
+        {"sequence": 2, "passenger": "Clara",
+            "destination": "Dupont Circle", "fare": 5.99},
+        {"sequence": 3, "passenger": "Lee",
+            "destination": "Georgetown University", "fare": 7.99}
     ]
 }
 
@@ -35,29 +38,32 @@ if __name__ == "__main__":
     #
     # "Print" a human-friendly message to denote the driver’s first name (i.e. "Your driver is Danny):
 
+    # getting elements off the nested dictionary
+    f_name = trip["driver"]["first_name"]
+    print(" Welcome to Rideshare, your driver today is %s" % (f_name))
 
     #
     # QUESTION B
     #
     # "Print" the number of stops this trip makes (i.e. 3):
 
-
+    print(len(trip["stops"]))
     #
     # QUESTION C
     #
     # Assuming the stops will always be listed in ascending order of their stop sequence,
     # ... "print" the destination of the second stop (i.e. "Dupont Circle"):
+    second_dest = trip["stops"][1]
 
-
-
+    print(second_dest["destination"])
     #
     # QUESTION D
     #
     # Loop through each of the trip’s stops and "print" that stop’s passenger name,
     # ... one at a time (i.e. "Vishal", then "Clara", then "Lee", each on a separate line):
-
-
-
+    for n in trip["stops"]:
+        name = n["passenger"]
+        print(name)
     #
     # QUESTION E
     #
@@ -65,3 +71,14 @@ if __name__ == "__main__":
     # ... The total fare is equal to the sum of all individual stop fares (i.e. $17.98).
     # ... Don’t worry about rounding or adjusting the decimal places (i.e. format function not necessary),
     # ... but do include a dollar sign.
+
+    total_price = 0
+
+    for f in trip["stops"]:
+        price = f["fare"]
+        total_price = total_price + price
+
+    def to_usd(total_price):
+        return f"${total_price:,.2f}"  # > $12,000.71
+print(to_usd(total_price))
+
